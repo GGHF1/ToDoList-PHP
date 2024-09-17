@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.login-form {
+    margin-top: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 16px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.error-msg {
+    color: #f44336;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+#log-button {
+    background-color: #2196f3;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#log-button:hover {
+    background-color: #1976d2;
+}
+
+.form-footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-footer a {
+    color: #2196f3;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: #1976d2;
+}
+
+.register-link{
+    margin-top: 10px;
+}
+
+.register-link a {
+    font-weight: bold;
+    text-decoration: none; 
+    color: #007BFF;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.forgot-pass a {
+    font-weight: bold;
+    text-decoration: none; 
+    color: #007BFF;
+}
+
+.forgot-pass a:hover {
+    text-decoration: underline;
+}
+
+.options-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.options-container input[type="checkbox"] {
+    margin-top: 10px;
+}

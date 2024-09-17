@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.list-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap;        
+    overflow: hidden;           
+    text-overflow: ellipsis; 
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    padding: 8px 16px;
+    width: 50px;
+}
+
+.pending-btn {
+    background-color: #ff9800; 
+}
+
+.completed-btn {
+    background-color: #4caf50; 
+}
+
+.completed-btn:hover{
+    background-color: #409343;
+}
+
+.pending-btn:hover{
+    background-color: #d27e01;
+}
+
+.del-button {
+    background-color: #f44336;
+}
+
+.del-button:hover {
+    background-color: #ce362b;
+}
+
+.add-item-form {
+    margin-top: 20px;
+}
+
+.add-item-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 16px;
+}
+
+.add-item-form input[type="text"] {
+    width: 77%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+#sub-button {
+    background-color: #2196f3;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#sub-button:hover {
+    background-color: #1976d2;
+}
+
+.upper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.upper h1 {
+    flex-grow: 1;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.quit-toggle{
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.quit-toggle img{
+    height: 30px;
+    width: auto;
+    margin-bottom: 20px;
+}
