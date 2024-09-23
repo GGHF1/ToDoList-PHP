@@ -22,7 +22,8 @@ Create an account for your MySQL DB and CREATE DATABASE ToDo_Example
 
 ### 4. Configure Environment Variables
 
-Edit a ```.env``` file according to your DB. For example:
+Create and edit a ```.env``` file according to your DB. 
+You can take the code form ```.env.example``` file. For example:
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
