@@ -13,7 +13,7 @@
 
         <div class="register-form">
             <form method="post" action="{{ route('register') }}" accept-charset="UTF-8">
-                {{ csrf_field() }}
+            @csrf  
 
                 <input type="text" name="username" id="username" placeholder="Username" required minlength="4" maxlength="20">
                 <div id="usernameError" class="error-message"></div>

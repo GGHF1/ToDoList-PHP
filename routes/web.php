@@ -19,3 +19,5 @@ Route::get('/change-password', [UserController::class, 'ChangePasswordForm']);
 Route::post('/change-password', [UserController::class, 'changepassword'])->name('changepassword');
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::post('/set-deadline/{itemId}', [ToDoListController::class, 'setDeadline'])->name('setDeadline');

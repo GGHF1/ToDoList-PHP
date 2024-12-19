@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ListItem;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ToDoListController extends Controller{
 
@@ -50,5 +51,37 @@ class ToDoListController extends Controller{
         $listItem->delete();
 
         return redirect('/');
+    }
+
+    public function setDeadline(Request $request, $itemId)
+    {
+        $request->validate([
+            'deadline' => 'required|date|after:today', 
+        ]);
+
+        $listItem = ListItem::find($itemId);
+
+        if ($listItem && $listItem->user_id === auth()->id()) {
+            $listItem->deadline = $request->deadline;
+            $listItem->save();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function checkDeadline($itemId)
+    {
+        $item = Task::findOrFail($itemId);
+        $deadline = $item->deadline;
+
+        if (isDeadlineExpired($deadline)) {
+            // Deadline expired, handle accordingly
+            return response()->json(['error' => 'This task deadline has expired.'], 400);
+        }
+
+        // Otherwise, proceed with task logic
+        return response()->json(['success' => 'This task deadline is valid.']);
     }
 }

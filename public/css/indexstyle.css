@@ -32,6 +32,7 @@ body {
     border-radius: 8px;
     margin-bottom: 15px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .list-item p {
@@ -41,6 +42,7 @@ body {
     white-space: nowrap;        
     overflow: hidden;           
     text-overflow: ellipsis; 
+    column-gap: 10px;
 }
 
 .actions {
@@ -81,6 +83,14 @@ body {
 
 .del-button:hover {
     background-color: #ce362b;
+}
+
+.info-button {
+    background-color: #94cfff;
+}
+
+.info-button:hover {
+    background-color: #6eb4f5;
 }
 
 .add-item-form {
@@ -134,7 +144,7 @@ body {
     letter-spacing: 1px;
 }
 
-.quit-toggle{
+.quit-toggle, .acc-info{
     background: none;
     border: none;
     color: #FFFFFF;
@@ -142,8 +152,160 @@ body {
     cursor: pointer;
 }
 
-.quit-toggle img{
+.quit-toggle img, .acc-info img{
     height: 30px;
     width: auto;
     margin-bottom: 20px;
+}
+
+.quit-toggle img:hover, .acc-info img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.task-wrapper {
+    display: flex; /* Ensures the task name and deadline are treated as block elements */
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-item .deadline {
+    font-size: 14px; /* Adjust the font size as needed */
+    color: #696868; /* Adjust the color if needed */
+    cursor: pointer;
+}
+
+.list-item .deadline:hover {
+    color: #484848;
+}
+
+.deadline p {
+    margin: 0; /* Remove margin for proper alignment */
+}
+.deadline-options {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.deadline-btn {
+    background-color: #2196f3;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.deadline-btn:hover {
+    background-color: #1976d2;
+}
+
+input[type="date"], input[type="time"] {
+    margin-top: 10px;
+    display: block;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Ensure modal is on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darken the background */
+    padding-top: 60px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content Styling */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* Centers the modal vertically and horizontally */
+    padding: 30px;
+    border-radius: 10px; /* Smooth rounded corners */
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
+    animation: zoomIn 0.3s ease-in-out forwards; /* Smooth zoom-in effect */
+}
+
+.modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.modal-body {
+    font-size: 16px;
+}
+
+.modal-body p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Task Info Formatting */
+.modal-body p strong {
+    font-weight: 600;
+}
+
+.error-message{
+    color: red;
+    font-size: 10px;
+    margin-top: 5px;
 }

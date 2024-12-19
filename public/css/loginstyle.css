@@ -81,6 +81,11 @@ h1 {
     background-color: #1976d2;
 }
 
+#log-button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
 .form-footer {
     margin-top: 15px;
     display: flex;

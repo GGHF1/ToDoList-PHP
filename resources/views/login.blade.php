@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="button-container">
-                    <button type="submit" id="log-button">Login</button>
+                    <button type="submit" id="log-button" disabled>Login</button>
                 </div>
                 @if (session('error'))
                     <div class="error-msg">
@@ -41,5 +41,6 @@
         </div>
     </div>
     <script src="{{ asset('js/showpass.js') }}"></script>
+    <script src="{{ asset('js/login-input.js') }}"></script>
 </body>
 </html>
