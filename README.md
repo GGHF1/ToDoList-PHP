@@ -18,7 +18,11 @@ Make sure to install:
 
 ### 3. Create the Database
 
-Create an account for your MySQL DB and CREATE DATABASE ToDo_Example
+Create an account for your MySQL DB and CREATE DATABASE ToDo_Example.
+Or you can use SQLite. To make a SQLite DB file, please, enter the command below:
+```bash
+touch database/database.sqlite
+```
 
 ### 4. Configure Environment Variables
 
@@ -32,14 +36,26 @@ DB_DATABASE=ToDo_Example
 DB_USERNAME=root
 DB_PASSWORD=1234
 ```
-### 5. Migrate the Database
+### 5. Install the Necessary Dependencies
+
+Enter this command to install all necessary dependencies
+```bash
+composer install
+```
+### 6. Generate Application Key
+
+Laravel requires an application key to be set. You can generate it by running:
+```bash
+php artisan key:generate
+```
+### 7. Migrate the Database
 
 After configuring the ```.env``` file, run the following command to create the necessary tables in your DB:
 ```bash
 php artisan migrate
 ```
 
-### 6. Serve the Application
+### 8. Serve the Application
 
 Start the PHP server by running:
 ```bash
@@ -47,7 +63,7 @@ php artisan serve
 ```
 This command will launch the server at ```http://127.0.0.1:8000/``` by default.
 
-### 7. Register, Log in, and Use To-Do List
+### 9. Register, Log in, and Use To-Do List
 
 Create a new account, log in into your new account and enjoy your To-Do List :)
 
