@@ -61,7 +61,7 @@ class ToDoListController extends Controller{
 
         $listItem = ListItem::find($itemId);
 
-        if ($listItem && $listItem->user_id === auth()->id()) {
+        if ($listItem && $listItem->user_id === Auth::id()) {
             $listItem->deadline = $request->deadline;
             $listItem->save();
 
@@ -73,7 +73,7 @@ class ToDoListController extends Controller{
 
     public function checkDeadline($itemId)
     {
-        $item = Task::findOrFail($itemId);
+        $item = ListItem::findOrFail($itemId);
         $deadline = $item->deadline;
 
         if (isDeadlineExpired($deadline)) {

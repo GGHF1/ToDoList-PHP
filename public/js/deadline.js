@@ -19,16 +19,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const setDeadlineBtn = document.getElementById(`set-deadline-btn-${itemId}`);
         
         // Reset value and prepare the field
-        datePicker.value = '';  // Clear any previously set value
+        datePicker.value = '';
         datePicker.style.display = 'inline';
         datePicker.focus();
-        // Trigger the click event to open the dropdown directly (without text input)
         setTimeout(() => datePicker.click(), 100);  // Add a short delay for better focus
 
-        // Check if date is selected and show the "Set Deadline" button
+        // Check if date is selected
         datePicker.addEventListener('change', function() {
             if (datePicker.value || document.getElementById(`time-picker-${itemId}`).value) {
-                setDeadlineBtn.style.display = 'inline'; // Show the button when date or time is set
+                setDeadlineBtn.style.display = 'inline'; 
             }
         });
     }
@@ -38,23 +37,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const timePicker = document.getElementById(`time-picker-${itemId}`);
         const setDeadlineBtn = document.getElementById(`set-deadline-btn-${itemId}`);
         
-        // Reset value and prepare the field 
-        timePicker.value = '';  // Clear any previously set value
+       
+        timePicker.value = '';  
         timePicker.style.display = 'inline';  
-        // Focus on the time picker to trigger the native dropdown behavior
         timePicker.focus();
-        // Trigger the click event to open the dropdown directly
         setTimeout(() => timePicker.click(), 100);  // Add a short delay for better focus
 
         // Check if time is selected and show the "Set Deadline" button
         timePicker.addEventListener('change', function() {
             if (timePicker.value || document.getElementById(`date-picker-${itemId}`).value) {
-                setDeadlineBtn.style.display = 'inline'; // Show the button when date or time is set
+                setDeadlineBtn.style.display = 'inline'; 
             }
         });
     }
 
-    // Check if either date or time is selected and show the "Set Deadline" button
+    // Check if either date or time is selected
     function checkDeadlineInputs(itemId) {
         const datePicker = document.getElementById(`date-picker-${itemId}`);
         const timePicker = document.getElementById(`time-picker-${itemId}`);
@@ -76,21 +73,21 @@ document.addEventListener('DOMContentLoaded', function () {
         let deadline = '';
     
         if (datePicker.value) {
-            deadline = datePicker.value;  // Get the selected date
+            deadline = datePicker.value + ' 23:59';  
         }
     
         // If only time is selected, use today's date
         if (timePicker.value) {
             if (deadline) {
-                deadline += ' ' + timePicker.value;  
+                deadline = datePicker.value + ' ' + timePicker.value;  
             } else {
-                // Get today's date in YYYY-MM-DD format
+                // Get today's date in YYYY-MM-DD
                 const today = new Date();
                 const dd = String(today.getDate()).padStart(2, '0');
-                const mm = String(today.getMonth() + 1).padStart(2, '0'); // Month is 0-based, so +1
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
                 const yyyy = today.getFullYear();
-                const formattedDate = `${yyyy}-${mm}-${dd}`; // Format as YYYY-MM-DD
-                deadline = formattedDate + ' ' + timePicker.value;  // Combine today’s date with the selected time
+                const formattedDate = `${yyyy}-${mm}-${dd}`; 
+                deadline = formattedDate + ' ' + timePicker.value;  
             }
         }
     
@@ -110,11 +107,15 @@ document.addEventListener('DOMContentLoaded', function () {
             errorMessage.style.display = 'block';
             errorMessage.textContent = 'You cannot set a deadline in the past. Please choose a future date and time.';
             return;
+        } else if (selectedDate.toDateString() === currentDate.toDateString() && selectedDate < new Date()) {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'You cannot set a deadline in the past. Please choose a future time.';
+            return;
         } else {
             errorMessage.style.display = 'none';
         }
     
-        // Get CSRF token from meta tag (assuming it's in a meta tag)
+        // Get CSRF token 
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         const formData = new FormData();
         formData.append('deadline', deadline);
@@ -128,34 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Update the displayed deadline on the task
-                const deadlineText = document.querySelector(`.list-item[data-id='${itemId}'] .deadline`);
-                const deadlineDate = new Date(deadline);
-                const now = new Date();
-                let formattedDeadline = '';
-    
-                // Format the deadline in European style
-                const dd = String(deadlineDate.getDate()).padStart(2, '0');
-                const mm = String(deadlineDate.getMonth() + 1).padStart(2, '0'); // Month is 0-based
-                const yyyy = deadlineDate.getFullYear();
-                const hours = String(deadlineDate.getHours()).padStart(2, '0');
-                const minutes = String(deadlineDate.getMinutes()).padStart(2, '0');
-                formattedDeadline = `${dd}/${mm}/${yyyy}, ${hours}:${minutes}`;
-
-                deadlineText.textContent = formattedDeadline;
-
-                // Change color if the deadline is expired
-                if (deadlineDate < now) {
-                    deadlineText.style.color = 'red';
-                } else {
-                    deadlineText.style.color = '';
-                }
-
-                // Hide the pickers and set button after success
-                datePicker.style.display = 'none';
-                timePicker.style.display = 'none';
-                const setDeadlineBtn = document.getElementById(`set-deadline-btn-${itemId}`);
-                setDeadlineBtn.style.display = 'none';  // Hide the "Set Deadline" button
+                location.reload(); // Added reload to correctly set deadlines
             } else {
                 alert('Error setting deadline.');
             }
@@ -163,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error:', error));
     }
 
-    // Expose functions for use in the template
     window.showDeadlineOptions = showDeadlineOptions;
     window.showDatePicker = showDatePicker;
     window.showTimePicker = showTimePicker;
