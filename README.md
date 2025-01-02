@@ -36,7 +36,7 @@ DB_DATABASE=ToDo_Example
 DB_USERNAME=root
 DB_PASSWORD=1234
 ```
-Change a timezone from UTC to your's. For example:
+Change a timezone from UTC to your's. For example:  
 From ```APP_TIMEZONE=UTC``` to ```APP_TIMEZONE=Europe/Riga```
 
 ### 5. Install the Necessary Dependencies
